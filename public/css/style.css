@@ -1,0 +1,250 @@
+body{
+    font-family: "Plus Jakarta Sans",sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height:100vh
+}
+
+.container-fluid {
+  max-width: 1440px; /* Or 1320px, 1200px depending on your design */
+  margin: auto;
+}
+
+/* navbar */
+.navbar{
+    height: 5rem;
+    color:aliceblue;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.fa-map-pin{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+
+}
+
+
+/* Footer */
+.f-info-links{
+    font-size: 0.85rem;
+    color:#555;
+}
+.f-info-links a {
+    text-decoration: none;
+    color: #222;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+
+}
+.f-info-links a:hover {
+    text-decoration: underline;
+    color: #007bff;
+}
+
+.f-info-brand {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.f-info-links , .f-info-socials , .f-info-brands{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+   
+    
+}
+
+.f-info-socials i {
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Facebook */
+.f-info-socials .facebook:hover {
+  color: #3b5998; /* Facebook Blue */
+  transform: scale(1.2);
+}
+
+/* Instagram */
+.f-info-socials .instagram:hover {
+  color: #e1306c; /* Instagram pink */
+  transform: scale(1.1);
+}
+
+/* LinkedIn */
+.f-info-socials .linkedin:hover {
+  color: #0077b5; /* LinkedIn Blue */
+  transform: scale(1.1);
+}
+
+.f-info{
+    text-align: center;
+    height: 6.5rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;         
+    padding-top: 1rem;          
+    gap: 0.2rem;
+
+}
+
+/* ==== Keep footer at bottom even with less content ==== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-layout {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+
+/* cards */
+
+.listing-card{
+  border : none !important;
+  margin-bottom: 2rem;
+}
+
+.card-img-top{
+  border-radius:  1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+
+}
+
+.card-body {
+    padding: 0.8rem 1rem;
+  }
+
+  .card-body h5 {
+    font-size: 0.8rem;
+  }
+
+  .card-body p {
+    font-size: 0.7rem;
+  }
+
+.card-text{
+  font-weight: 350 !important;
+}
+
+.listing-link{
+  text-decoration: none;
+
+
+}
+
+.card-img-overlay{
+  opacity:0;
+}
+
+.card-img-overlay:hover{
+  opacity:0.2;
+  background-color: whitesmoke !important;
+}
+
+.card-img-top {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.hover-effect:hover .card-img-top {
+  transform: scale(1.03);
+}
+
+.card {
+  overflow: hidden; /* prevent zoomed image from overflowing over text */
+}
+
+.card-body {
+  position: relative;
+  z-index: 2;
+  background-color: white; /* optional for solid background */
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.2rem;
+  color: #ff385c; /* Airbnb-style pink */
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease-in-out, transform 0.2s ease;
+  z-index: 10;
+}
+
+/* Filled heart on hover */
+.wishlist-icon:hover {
+  color: red; /* red fill on hover */
+  transform: scale(1.2);
+  font-weight: 900; /* makes it look more solid */
+}
+
+
+/* buttons */
+
+.add-btn{
+  background-color: #fe424d !important;
+  border: none !important;
+}
+
+.edit-btn{
+  background-color: #fe424d !important;
+  border: none !important;
+}
+
+/* show page */
+.show-img{
+  height:30vh;
+}
+
+.btns{
+  display:flex;
+}
+
+.show-card{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* MAP */
+#map {
+    height: 400px;
+    width: 80vh;
+    }
+
+    /* navbar */
+    .navbar-brand .brand-name {
+      color: #fe424d !important; /* same reddish-pink as icon */
+      margin-left: 0.3rem; /* slight spacing from icon */
+      font-weight: bold;
+    }  
+
+    .navbar-nav .nav-link {
+     padding-top: 0.1rem;
+     padding-bottom: 0.2rem;
+     
+     }
+
+     
