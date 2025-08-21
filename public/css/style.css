@@ -235,9 +235,9 @@ html, body {
     }
 
     /* navbar */
-    .navbar-brand .brand-name {
-      color: #fe424d !important; /* same reddish-pink as icon */
-      margin-left: 0.3rem; /* slight spacing from icon */
+    /* .navbar-brand .brand-name {
+      color: #fe424d !important;
+      margin-left: 0.3rem;
       font-weight: bold;
     }  
 
@@ -247,4 +247,12 @@ html, body {
      
      }
 
-     
+      .navbar-nav {
+    flex-wrap: nowrap !important;
+  }  */
+
+  .icon{
+    color: #fe424d;
+  }
+
+  

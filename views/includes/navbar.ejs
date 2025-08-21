@@ -1,69 +1,387 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
-    color:#fff;
-    border-radius: 23px;
-    padding: 0 2rem 0 2rem;
-    font-size: 0.9rem;
 
+  /* navbar ko flex layout do */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 2rem;
+}
+
+
+.navbar .navbar-toggler {
+  position: absolute;
+  right: 1.5rem;   /* distance from right edge */
+  top: 1.5rem;  /* distance from top */
+}
+
+
+.search-btn {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius: 23px;
+  padding: 0 1rem 0 1rem;
+  font-size: 0.9rem;
+  border-radius: 0 25px 25px 0; /* right rounded, left flat */
+  height: 40px;     /* match input height */
+  width: 50px;      /* small button, YouTube style */
+
+}
+
+.search-btn:hover {
+  background-color: #fe424d;
+  color: #fff;
+}
+
+.search-btn i {
+  display: inline;
+  margin-right: 0.8rem;
+}
+
+/* --- Search Input --- */
+.search-inp {
+  border-right: none; /* border overlap remove */
+  border: 1px solid #ccc;
+  outline: none;
+  width: 280px;
+  height: 40px;      /* YouTube style thin height */
+  padding:  1rem 1rem 1rem 2rem ;   /* vertical padding kam kar do */
+  font-size: 14px;   /* text smaller like YouTube */
+  border-radius: 18px 0 0 18px; /* thinner pill look */
+  flex: 1;
+  display: flex;
+  align-items: center;  
+}
+
+/* --- Search Bar Wrapper --- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 400px; 
+  box-shadow: none;
+ 
+}
+
+.search-inp::placeholder {
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center; 
+}
+
+/* --- Brand Styling --- */
+.navbar-brand .brand-name {
+  color: #fe424d !important; /* same reddish-pink as icon */
+  margin-left: 0.3rem;       /* slight spacing from icon */
+  font-weight: bold;
+}
+
+.navbar-brand {
+  
+    margin-left: 0.5rem;  /* normally 1.25rem hota hai */
+  }
+  .navbar-brand i {
+    
+    margin-left: 0.1rem;
   }
 
-  .search-btn:hover{
-    background-color: #fe424d;
-    color:#fff;
+  .navbar-nav .nav-link {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.4rem;
   }
 
-  .search-btn i {
-    display: inline;
-    margin-right: 0.8rem;
-  }
+/* --- Navbar Link Spacing --- */
+.nav-link {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  margin-left: 0.4rem;
+  white-space: nowrap; /* wrap hone se rokta hai */
+}
 
-  .search-inp{
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    border-radius: 25px;
+/* --- Navbar Container --- */
+.navbar-nav {
+  flex-wrap: nowrap !important; /* force single line */
+  align-items: center;
+  gap: 2px;
+}
+
+
+/* --- Mobile (<= 767px) --- */
+@media (max-width: 767px) {
+  .search-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
   }
 
   .search-bar {
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    
+    display: flex !important;
+    justify-content: center !important;
   }
+
+  .search-bar form {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.7rem;
+    margin: 0 0.2rem;
+  }
+
+
+  
+}
+
+/* --- Collapse Behavior --- */
+@media (max-width: 835px) {
+    .search-inp {
+    font-size: 0.3rem;
+    height: 35px;
+    width: 70px;
+    padding: 0.15rem 0.45rem;
+    text-align: center;
+  }
+
+  .search-btn {
+    width: 40px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.05rem;   /* normally 1.25rem hota hai */
+  }
+  .navbar-brand i {
+    font-size: 1.2rem;
+  }
+
+  /* Explore link smaller */
+  .navbar-nav .nav-link {
+    
+    font-size: 0.8rem;   /* thoda chota */
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  /* Right links shrink */
+  .navbar-nav.ms-auto .nav-link {
+    font-size: 0.7rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+
+  }
+}
+
+
+/* For screen sizes 850px and below */
+@media (max-width: 920px) {
+  /* Brand logo + text smaller */
+  .navbar-brand {
+    font-size: 1.2rem;   /* normally 1.25rem hota hai */
+  }
+  .navbar-brand i {
+    font-size: 1.3rem;
+  }
+
+  /* Explore link smaller */
+  .navbar-nav .nav-link {
+    font-size: 0.7rem;   /* thoda chota */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  /* Search bar smaller */
+  .search-bar input {
+    font-size: 0.8rem;
+    padding:  0.2rem 0.2rem 0.2rem 0.7rem;
+    height: 30px;
+    width: 160px;   /* normally bada hota hai, ab chota */
+  }
+  .search-bar button {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+    height: 30px;
+    width: 40px;
+  }
+
+  /* Right links shrink */
+  .navbar-nav.ms-auto .nav-link {
+    font-size: 0.9rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+  }
+}
+
+/* Mobile menu only */
+@media (max-width:768px) {
+  .mobile-menu {
+    position: absolute;
+    top: 100%;         /* navbar ke neeche */
+    right: 0;          /* right side */
+    width: 100px;       /* jitna content utna */
+    background-color: #525355; /* dark bg */
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+   
+  }
+  .mobile-menu .nav-link {
+    color: #fff !important;  /* text visible */
+    
+  }
+
+  .mobile menu a {
+    font-size: 0.4rem;   /* aur bhi chhota mobile ke liye */
+  }
+
+}
+
+/* Offcanvas customization */
+#mobileMenu {
+  margin-top: 80px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.12); 
+  border-radius: 14px;  
+  height: 250px;
+  width: 250px !important;  /* chhota width */
+  background-color: #d5d7d8; /* halka background jo website se match kare */
+}
+
+#mobileMenu .offcanvas-body {
+  overflow: hidden !important;           /* <- yahi pe scrollbar aata tha */
+  -webkit-overflow-scrolling: auto;
+}
+
+#mobileMenu::-webkit-scrollbar,
+#mobileMenu .offcanvas-body::-webkit-scrollbar { display: none; }
+
+/* Title styling */
+#mobileMenu .offcanvas-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ff385c; /* tumhare website ka theme color */
+}
+
+/* Links styling */
+#mobileMenu .nav-link {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+ 
+}
+
+#mobileMenu .nav-link:hover {
+  background-color: #cbc7c854; /* hover effect with theme color */
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+#mobileMenu .close-btn {
+  position: absolute;
+  top: 7px;
+  right: 27px;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #201f1f;
+  transition: color 0.3s ease;
+}
+
+#mobileMenu .close-btn:hover {
+  color: #ea3d3d; /* theme color */
+}
+
 
 </style>
 
 
 <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">
+
+  <!-- Left -->
+  <div class="container-fluid d-flex align-items-center">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
       <i class="fa-solid fa-map-pin"></i>
       <span class="brand-name">WanderLust</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="nav-link" href="/listings">Explore</a>
+   
+
+  <!-- center -->   
+ <div class="search-container mx-auto d-flex ">
+  <div class="navbar nav search-bar">
+   <form class="d-flex" role="search" action="/listings/search" method="GET">
+    <input 
+      class="form-control text-center search-inp" 
+      type="search" 
+      placeholder="Search destinations" 
+      name="location"
+    />
+     <button class="btn search-btn" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+   </form>
+  </div>
+  </div>
+   </div>
+ 
+ 
+
+     <!-- Hamburger (sirf mobile pe visible hoga) -->
+    <button class="navbar-toggler d-md-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav"> 
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
+  
 
-      <div class="navbar nav ms-auto search-bar">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
-          </button>
-       </form>
-      </div>
-
-     
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Add new Listing</a>
-        <% if(!currUser) { %>
-        <a class="nav-link"  href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Login</b></a>
-        <% } %> <% if(currUser) { %>
-        <a class="nav-link" href="/logout"><b>Logout</b></a>
+  <!-- Normal navbar (desktop pe visible hoga) -->
+    <div class="collapse navbar-collapse d-none d-md-block">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/listings/new">Add new Listing</a></li>
+        <% if (!currUser) { %>
+          <li class="nav-item"><a class="nav-link" href="/signup"><b>Sign up</b></a></li>
+          <li class="nav-item"><a class="nav-link" href="/login"><b>Login</b></a></li>
         <% } %>
-      </div>
+        <% if (currUser) { %>
+          <li class="nav-item"><a class="nav-link" href="/logout"><b>Logout</b></a></li>
+        <% } %>
+      </ul>
+    </div>
+   
+ 
+</nav>
 
+  <!-- Offcanvas Menu -->
+<div class="offcanvas offcanvas-end text-bg-light" id="mobileMenu">
+  <div class="offcanvas-header">
+    <button class="close-btn">&times;</button>  <!-- Cross Button -->
+    <h5 class="offcanvas-title">Quick Access</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="navbar-nav flex-column">
+      <a class="nav-link" href="/listings/new">Add new Listing</a>
+      <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+        <a class="nav-link" href="/login"><b>Login</b></a>
+      <% } %>
+      <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>Logout</b></a>
+      <% } %>
     </div>
   </div>
-</nav>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+

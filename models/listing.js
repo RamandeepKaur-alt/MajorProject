@@ -26,6 +26,10 @@ owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
 },
+location: {
+  type: String,
+  required: true
+},
 geometry: {
     type: {
       type: String, // Don't do `{ location: { type: String } }`

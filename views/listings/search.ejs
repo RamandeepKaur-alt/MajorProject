@@ -1,0 +1,54 @@
+<%  layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+  <!-- Heading -->
+  <h3 class="mb-4">
+    Search Results for "<%= location %>"
+  </h3>
+
+  <!-- Agar koi results mile -->
+  <% if (listings.length > 0) { %>
+    <div class="row">
+      <% listings.forEach(listing => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+            <!-- Listing Image -->
+            <img 
+              src="<%= listing.image.url %>" 
+              class="card-img-top" 
+              alt="<%= listing.title %>"
+            />
+            <div class="card-body">
+              <!-- Title -->
+              <h5 class="card-title"><%= listing.title %></h5>
+              
+              <!-- Location -->
+              <p class="card-text text-muted">
+                <i class="fa-solid fa-location-dot"></i>
+                <%= listing.location %>
+              </p>
+
+              <!-- Price -->
+              <p class="card-text fw-bold">
+                ₹ <%= listing.price %> / night
+              </p>
+
+              <!-- View Details Button -->
+              <a href="/listings/<%= listing._id %>" class="btn btn-sm btn-primary">
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <!-- Agar kuch bhi na mile -->
+    <p class="text-danger fs-5">
+      No results found for "<%= location %>".  
+      Try searching with another keyword.
+    </p>
+  <% } %>
+
+</div>

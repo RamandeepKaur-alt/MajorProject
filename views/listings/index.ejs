@@ -1,109 +1,94 @@
 <% layout("/layouts/boilerplate") %> <%= success %>
-
+  
 <style>
-  #filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  .filters-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* toggle fixed right */
+  gap: 1rem;
+  padding: 0 16px;
+  margin-top: 2rem;
+}
 
-  }
+.filters-scroll {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* only icons scroll */
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding-right: 4rem;
+}
+.filters-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
 
-  .filters{
-    text-align : center;
-    margin-right: 2rem;
-    margin-top: 2rem;
-    opacity: 0.7
-  }
+.filters {
+  text-align: center;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.filters:hover {
+  opacity: 1.04;
+  cursor: pointer;
+  transform: scale(1.07);
+  transition: all 0.3s ease;
+}
+.filters p {
+  font-size: 0.8rem;
+}
 
-  .filters:hover{
-    opacity: 1.04;
-    cursor: pointer;
-    transform: scale(1.07);
-    transition: all 0.3s ease;
-  }
+.tax-toggle {
+  flex-shrink: 0;
+  border: 1px solid rgb(149, 146, 146);
+  border-radius: 1rem;
+  height: 3rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.5rem;
+}
 
-  .filters p{
-    font-size: 0.8rem;
-  }
+.toggle-text {
+  font-size: 0.8rem;
+}
 
-  .tax-info {
-    display: none;
-  }
-
-  .tax-toggle {
-    border: 1px solid rgb(149, 146, 146);
-    border-radius: 1rem;
-    height: 3rem;
-    padding: 1rem;
-    margin-left: 5rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .toggle-text {
-    font-size: 0.8rem;
-  }
+.tax-info {
+  display: none;
+}
 
 </style>
 
-
-<div id="filters">
-  <div class="filters">
-    <div><i class="fa-solid fa-fire"></i></div>
-      <p>Trending</p>
+<div class="filters-bar">
+  <!-- Scrollable icons -->
+  <div class="filters-scroll">
+    <div class="filters"><i class="fa-solid fa-fire"></i><p>Trending</p></div>
+    <div class="filters"><i class="fa-solid fa-mountain-city"></i><p>Iconic Cities</p></div>
+    <div class="filters"><i class="fa-solid fa-mountain"></i><p>Mountains</p></div>
+    <div class="filters"><i class="fa-solid fa-umbrella-beach"></i><p>Beachside</p></div>
+    <div class="filters"><i class="fa-solid fa-campground"></i><p>Camping</p></div>
+    <div class="filters"><i class="fa-solid fa-leaf"></i><p>Nature</p></div>
+    <div class="filters"><i class="fa-solid fa-person-swimming"></i><p>Amazing Pools</p></div>
+    <div class="filters"><i class="fa-solid fa-bed"></i><p>Rooms</p></div>
+    <div class="filters"><i class="fa-solid fa-indian-rupee-sign"></i><p>Price</p></div>
   </div>
 
-  <div class="filters">
-    <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
+  <!-- Fixed toggle -->
+  <div class="tax-toggle">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="switchCheckDefault" />
+      <label class="form-check-label toggle-text" for="switchCheckDefault">
+        Display total before taxes
+      </label>
+    </div>
   </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-mountain"></i></div>
-      <p>Mountains</p>
-  </div>
-
-
-   <div class="filters">
-    <div><i class="fa-solid fa-umbrella-beach"></i></div>
-      <p>Beachside</p>
-  </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-campground"></i></div>
-      <p>Camping</p>
-  </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-leaf"></i></div>
-      <p>Nature</p>
-  </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Amazing Pools</p>
-  </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-bed"></i></div>
-      <p>Rooms</p>
-  </div>
-
-  <div class="filters">
-    <div><i class="fa-solid fa-indian-rupee-sign"></i></div>
-      <p>Price</p>
-  </div>
-
-  
-<div class="tax-toggle">
-    <div class="form-check-reverse form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-  <label class="form-check-label toggle-text" for="switchCheckDefault">Display total before taxes</label>
 </div>
-  </div>
 
-</div>
+
 
 <div class="container">
 <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3 mt-3">

@@ -22,6 +22,18 @@ router.route("/")
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+//Search Route 
+router.get("/search", async (req, res) => {
+  let { location } = req.query; 
+
+  // case-insensitive search
+  const listings = await Listing.find({ 
+    location: { $regex: location, $options: "i" }
+  });
+
+  res.render("listings/search.ejs", { listings, location });
+});
+
 // show , update , delete 
 router.route("/:id")
 .get( wrapAsync(listingController.showListing))
@@ -33,5 +45,8 @@ router.get("/:id/edit",
      isLoggedIn,
      isOwner,
     wrapAsync(listingController.renderEditForm));
+
+
+
 
 module.exports = router;

@@ -5,43 +5,55 @@
   console.log("Coordinates:", listing.geometry.coordinates);
   console.log("Location:", listing.location);
 </script>
-<div class="row mt-3">
- <div class="col-8 offset-3">
-    <h3><%= listing.title %></h3>
-</div>
-    <div class="card col-6 offset-3 show-card listing-card" >
-      <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
-      <div class="card-body">
-      <p class="card-text">
-       <i>Owned by <%= listing.owner.username %></i> <br />
-        <%= listing.description %> <br/>
-        <%= listing.price ? listing.price.toLocaleString("en-IN"): "Not Available" %> / night <br />
-        <%= listing.location %> 
-        <%= listing.country %> <br />
+
+<div class="container mt-4">
+
+  <!-- Title -->
+  <h3 class="fw-bold mb-3 text-center"><%= listing.title %></h3>
+
+  <!-- Card -->
+  <div class="card shadow-lg border-2 rounded-3 mb-4 col-md-5 mx-auto">
+    <img src="<%= listing.image.url %>" class="card-img-top rounded-top" alt="listing_image">
+
+    <div class="card-body">
+      <p class="mb-1 text-muted">
+        Owned by <b><%= listing.owner.username %></b>
       </p>
-     </div>
+      
+      <p class="text-muted mb-1"><%= listing.description %></p>
+
+      <p class="mb-1">
+        <i class="fa-solid fa-location-dot icon"></i>
+        <%= listing.location %>, <%= listing.country %>
+      </p>
+
+      <h5 class="fw-bold text-success">
+        ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : "Not Available" %> / night
+      </h5>
     </div>
-    
-    <br />
+  </div>
 
-    <% if(currUser && listing.owner._id.equals(currUser._id))  { %>
-    <div class="btns">
-     <a 
-     href="/listings/<%=listing._id %>/edit"
-      class="btn btn-dark col-1 offset-3 edit-btn"
-      >Edit</a>
+   <!-- Edit/Delete Buttons -->
+  <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
+    <div class=" btns d-flex justify-content-center mb-4 gap-3">
+        <a href="/listings/<%=listing._id %>/edit"
+           class="btn btn-dark px-4 edit-btn">
+           Edit
+        </a>
     
-    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-      <button class="btn btn-dark offset-5 edit-btn">Delete </button>
-    </form>
+        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+            <button class="btn btn-dark px-4 edit-btn">Delete</button>
+        </form>
     </div>
-    <% } %>
+<% } %>
 
 
-    <div class="col=8 offset-3 mb-3">
-       <hr />
+
+<!-- Reviews -->
+  <div class="col-md-8 mx-auto mb-5">
+    <hr class="mb-4" />
        <% if(currUser) { %>
-      <h4>Leave a Review</h4>
+      <h4 class="mb-4 shadow-sm">Leave a Review</h4>
       <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
        
         <!-- <div class="mb-3 mt-3">
@@ -49,8 +61,11 @@
           <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
         </div> -->
 
-        <div class="mb-3 mt-3">
-        <label for="rating" class="form-control">Rating</label>
+        <div class="mb-2">
+        <!-- <label for="rating" class="form-control">Your Rating</label><br /> -->
+        <h6>
+          Your Rating <i class="fa-regular fa-star ms-1 fs-5"></i>
+        </h6>
         <fieldset class="starability-slot">
           <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
           <input type="radio" id="first-rate1" name="review[rating]" value="1" />
@@ -66,47 +81,57 @@
         </fieldset>
         </div>
 
-        <div class="mb-3 mt-3">
-          <label for="comment" class="form-control">Comments</label>
+        <div class="mb-3">
+          <!-- <label for="comment" class="form-control">Your Comment</label> -->
+          <h6>
+            Your Comment <i class="fa-regular fa-comment ms-1 fs-5"></i>
+          </h6>
           <textarea 
           name="review[comment]" 
           id="comment" 
-          cols="15" 
-          rows="5"
+          rows="3"
           class="form-control"
+          placeholder="Share your experience..."
           required
           ></textarea>
           <div class="invalid-feedback">
             Please add comments
           </div>
         </div>
-        <button class="btn btn-outline-dark">Submit</button>
+
+        <!-- Submit -->
+        <button class="btn btn-outline-dark rounded px-4">Submit Review</button>
       </form>
       <% } %>
       
       
-      <% if(listing.reviews.length>0){ %>
-      <div class="row">
-      <p><b>All Reviews</b></p>
-      <% for(review of listing.reviews) { %>
-      <div class="card col-5 ms-3 mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= review.author.username %></h5>
-          <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
-          <p class="card-text"><%= review.comment %></p>
-          <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-          <button class="btn btn-sm btn-dark">Delete</button>
-          </form>
-        </div>
-       </div>
-       <% } %>
-       </div>
-      <% } %> 
+      <% if(listing.reviews.length > 0) { %>
+      <hr class="mt-5 mb-4" />
+      <h5 class="mb-4">All Reviews</h5>
+      <div class="row g-3">
+        <% for(review of listing.reviews) { %>
+          <div class="col-md-6">
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+              <h6 class="card-title fw-bold"><%= review.author.username %></h6>
+              <p class="starability-result mb-2" data-rating="<%= review.rating %>"></p>
+              <p class="card-text text-muted"><%= review.comment %></p>
+              <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-outline-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+         </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+
+    <div class="col-md-8 mx-auto mb-5">
+      <h3 class="mb-3">Where you'll be</h3>
+      <div id="map" class="rounded shadow-sm" style="height: 400px; width: 850px;"></div>
     </div>
-    <div class="col-8 offset-3 mb-3">
-        <h3>Where you'll be</h3>
-        <div id="map"></div>
-    </div>
+
 </div>
 
 <script src="/js/map.js"></script>
